@@ -3,7 +3,7 @@ Cinzel Hellenic
 
 Cinzel Hellenic is a Regular-only display typeface derived from [Cinzel](https://github.com/NDISCOVER/Cinzel). It keeps the classical Cinzel base and adds a restrained Hellenic tint for Latin logos, marks, and display use.
 
-The Hellenic treatment is intentionally narrow: the current design focuses on the uppercase `A` and `E`, preserving Latin readability while nudging the word shape toward Greek inscriptional forms.
+The Hellenic treatment is intentionally narrow: the current design focuses on the uppercase `A`, `E`, `M`, and `O`, preserving Latin readability while nudging the word shape toward Greek inscriptional forms. The `A` drops its crossbar, the `E` extends its middle arm to the full arm length, the `M` raises the vertex of its middle diagonals, and the `O` is slightly reduced and centered like an inscriptional omicron.
 
 Preview
 -------
@@ -14,9 +14,9 @@ Preview
 
 ![Original Cinzel E compared with the current Cinzel Hellenic E](previews/e-detail.png)
 
-### A/E overlay
+### A/E/M/O overlay
 
-![Overlay comparison of original A and E against the current Cinzel Hellenic A and E](previews/ae-overlay.png)
+![Overlay comparison of original A, E, M, and O against the current Cinzel Hellenic glyphs](previews/ae-overlay.png)
 
 Origin
 ------

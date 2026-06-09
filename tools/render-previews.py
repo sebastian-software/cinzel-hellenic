@@ -99,7 +99,7 @@ def render_specimen():
     draw_text(draw, (305, glyph_y + 10), "Original", small_font, MUTED)
     draw_text(draw, (305, glyph_y + 126), "Current", small_font, MUTED)
 
-    for index, glyph in enumerate(["A", "E"]):
+    for index, glyph in enumerate(["A", "E", "M", "O"]):
         x = 455 + index * 220
         for row, selected_font in enumerate([original_glyph, current_glyph]):
             y = glyph_y + row * 122
@@ -126,18 +126,18 @@ def render_e_detail():
 
 
 def render_overlay():
-    image = Image.new("RGB", (1280, 760), PAPER)
+    image = Image.new("RGB", (2240, 760), PAPER)
     draw = ImageDraw.Draw(image)
     title_font = font(ARIAL, 31)
     label_font = font(ARIAL, 27)
 
-    draw_text(draw, (52, 42), "A/E overlay - Original blue, Current red", title_font)
-    draw.line((52, 92, 1228, 92), fill=LINE, width=2)
+    draw_text(draw, (52, 42), "A/E/M/O overlay - Original blue, Current red", title_font)
+    draw.line((52, 92, 2188, 92), fill=LINE, width=2)
 
-    for index, glyph in enumerate(["A", "E"]):
+    for index, glyph in enumerate(["A", "E", "M", "O"]):
         x = 155 + index * 520
         draw_text(draw, (x, 165), glyph, label_font, MUTED)
-        overlay = Image.new("RGBA", (420, 520), (0, 0, 0, 0))
+        overlay = Image.new("RGBA", (500, 520), (0, 0, 0, 0))
         overlay_draw = ImageDraw.Draw(overlay)
         overlay_draw.text((40, 60), glyph, font=font(ORIGINAL_TTF, 430), fill=(30, 90, 210, 105))
         overlay_draw.text((40, 60), glyph, font=font(CURRENT_TTF, 430), fill=(220, 50, 45, 135))
