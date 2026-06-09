@@ -1,1 +1,4 @@
--r requirements-dev.txt
+fontmake>=3.12,<4
+fonttools>=4.63,<5
+Brotli>=1.2,<2
+Pillow>=12,<13
