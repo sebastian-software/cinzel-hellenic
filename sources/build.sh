@@ -23,13 +23,17 @@ if [ ! -f "$TTF_PATH" ]; then
   exit 1
 fi
 
+echo "Normalizing font metadata"
 echo "Building $FONT_BASENAME.woff2"
 python3 - "$TTF_PATH" "$WOFF2_PATH" <<'PY'
 import sys
 from fontTools.ttLib import TTFont
 
 source, target = sys.argv[1], sys.argv[2]
-font = TTFont(source)
+font = TTFont(source, recalcTimestamp=False)
+font.recalcTimestamp = False
+font["head"].modified = font["head"].created
+font.save(source)
 font.flavor = "woff2"
 font.save(target)
 PY
