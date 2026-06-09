@@ -7,7 +7,7 @@
     <key>capHeight</key>
     <integer>700</integer>
     <key>copyright</key>
-    <string>Copyright 2020 The Cinzel Project Authors (https://github.com/NDISCOVER/Cinzel)</string>
+    <string>Copyright 2020 The Cinzel Project Authors (https://github.com/NDISCOVER/Cinzel); Copyright 2026 Sebastian Werner (https://github.com/sebastian-software/cinzel-hellenic)</string>
     <key>descender</key>
     <integer>-372</integer>
     <key>familyName</key>
@@ -19,13 +19,23 @@
     <key>openTypeHeadCreated</key>
     <string>2012/02/13 11:01:44</string>
     <key>openTypeNameDesigner</key>
-    <string>Natanael Gama</string>
+    <string>Natanael Gama, Sebastian Werner</string>
     <key>openTypeNameDesignerURL</key>
-    <string>www.ndiscovered.com</string>
+    <string>https://github.com/sebastian-software/cinzel-hellenic</string>
+    <key>openTypeNameDescription</key>
+    <string>Regular-only display typeface derived from Cinzel with a restrained Hellenic tint for Latin logos and display use.</string>
     <key>openTypeNameLicense</key>
     <string>This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL</string>
     <key>openTypeNameLicenseURL</key>
     <string>https://scripts.sil.org/OFL</string>
+    <key>openTypeNameManufacturer</key>
+    <string>sebastian-software</string>
+    <key>openTypeNameManufacturerURL</key>
+    <string>https://github.com/sebastian-software/cinzel-hellenic</string>
+    <key>openTypeNamePreferredFamilyName</key>
+    <string>Cinzel Hellenic</string>
+    <key>openTypeNamePreferredSubfamilyName</key>
+    <string>Regular</string>
     <key>openTypeOS2Selection</key>
     <array>
       <integer>7</integer>

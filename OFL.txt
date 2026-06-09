@@ -1,5 +1,6 @@
 Copyright 2020 The Cinzel Project Authors (https://github.com/NDISCOVER/Cinzel)
 Copyright © 2012 Natanael Gama (www.ndiscovered.com), with Reserved Font Name “Cinzel Decorative”
+Copyright 2026 Sebastian Werner (https://github.com/sebastian-software/cinzel-hellenic), with Reserved Font Name "Cinzel Hellenic"
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
