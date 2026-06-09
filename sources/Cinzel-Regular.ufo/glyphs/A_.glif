@@ -2,8 +2,8 @@
 <glyph name="A" format="2">
   <advance width="712"/>
   <unicode hex="0041"/>
-  <guideline x="744.412" y="-14" angle="0"/>
-  <guideline x="734.412" y="714" angle="0"/>
+  <guideline x="744.412" y="-14" angle="0" identifier="9Xxv4R9FWw"/>
+  <guideline x="734.412" y="714" angle="0" identifier="zKqW6lGjYR"/>
   <anchor x="536" y="10" name="ogonek"/>
   <anchor x="357" y="764" name="top"/>
   <outline>
@@ -38,12 +38,6 @@
       <point x="57" y="3" type="line"/>
       <point x="117" y="3" type="line"/>
       <point x="368" y="644" type="line"/>
-    </contour>
-    <contour>
-      <point x="500" y="273" type="line"/>
-      <point x="187" y="273" type="line"/>
-      <point x="187" y="243" type="line"/>
-      <point x="500" y="243" type="line"/>
     </contour>
     <contour>
       <point x="545" y="73" type="line"/>
