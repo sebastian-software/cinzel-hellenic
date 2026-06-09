@@ -1,9 +1,27 @@
 Cinzel Hellenic
 ===============
 
-Cinzel Hellenic is a Regular-only display typeface derived from Cinzel. It keeps the classical Cinzel base and adds a restrained Hellenic tint for Latin logos, marks, and display use.
+Cinzel Hellenic is a Regular-only display typeface derived from [Cinzel](https://github.com/NDISCOVER/Cinzel). It keeps the classical Cinzel base and adds a restrained Hellenic tint for Latin logos, marks, and display use.
 
 The Hellenic treatment is intentionally narrow: the current design focuses on the uppercase `A` and `E`, preserving Latin readability while nudging the word shape toward Greek inscriptional forms.
+
+Preview
+-------
+
+![Cinzel Hellenic specimen comparing original Cinzel with the current display cut](previews/specimen.png)
+
+### E detail
+
+![Original Cinzel E compared with the current Cinzel Hellenic E](previews/e-detail.png)
+
+### A/E overlay
+
+![Overlay comparison of original A and E against the current Cinzel Hellenic A and E](previews/ae-overlay.png)
+
+Origin
+------
+
+Cinzel Hellenic is a modified version of [Cinzel](https://github.com/NDISCOVER/Cinzel), originally designed by Natanael Gama. The original project remains the canonical source for Cinzel; this repository contains the Hellenic display adaptation.
 
 Authors
 -------
@@ -16,7 +34,7 @@ License
 
 Cinzel Hellenic is distributed under the SIL Open Font License, Version 1.1. See `OFL.txt`.
 
-`Cinzel Hellenic` is a modified version of Cinzel. The original Cinzel reference font is kept at `fonts/reference/Cinzel-Regular.ttf` only for visual comparison.
+The original Cinzel reference font is kept at `fonts/reference/Cinzel-Regular.ttf` only for visual comparison.
 
 Build
 -----
@@ -34,8 +52,8 @@ The build emits:
 
 No Bold, Black, Decorative, or variable fonts are built.
 
-Previews
---------
+Regenerating Previews
+---------------------
 
 After building the font, regenerate the checked-in preview images with:
 
