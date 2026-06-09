@@ -39,9 +39,10 @@ The original Cinzel reference font is kept at `fonts/reference/Cinzel-Regular.tt
 Build
 -----
 
-Install the Python requirements, then run:
+Install the build requirements, then run:
 
 ```sh
+python3 -m pip install -r requirements-build.txt
 bash sources/build.sh
 ```
 
@@ -58,6 +59,7 @@ Regenerating Previews
 After building the font, regenerate the checked-in preview images with:
 
 ```sh
+python3 -m pip install -r requirements-preview.txt
 python3 tools/render-previews.py
 ```
 
@@ -66,6 +68,8 @@ The preview script compares the current built font with the original reference a
 - `previews/specimen.png`
 - `previews/e-detail.png`
 - `previews/ae-overlay.png`
+
+For both build and preview tooling in one environment, install `requirements-dev.txt`.
 
 Repository
 ----------
