@@ -20,8 +20,8 @@
     </contour>
     <contour>
       <point x="429" y="360" type="line"/>
-      <point x="199" y="360" type="line"/>
-      <point x="199" y="330" type="line"/>
+      <point x="220" y="360" type="line"/>
+      <point x="220" y="330" type="line"/>
       <point x="429" y="330" type="line"/>
     </contour>
     <contour>
