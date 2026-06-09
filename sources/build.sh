@@ -1,99 +1,39 @@
 #!/bin/sh
 set -e
 
-# Go the sources directory to run commands
-SOURCE="${BASH_SOURCE[0]}"
-DIR=$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )
-cd $DIR
-echo $(pwd)
+SOURCE_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+ROOT_DIR=$(CDPATH= cd -- "$SOURCE_DIR/.." && pwd)
+UFO="CinzelHellenic-Regular.ufo"
+FONT_BASENAME="CinzelHellenic-Regular"
+TTF_DIR="$ROOT_DIR/fonts/ttf"
+WOFF2_DIR="$ROOT_DIR/fonts/woff2"
+TTF_PATH="$TTF_DIR/$FONT_BASENAME.ttf"
+WOFF2_PATH="$WOFF2_DIR/$FONT_BASENAME.woff2"
 
-rm -rf ../fonts
+cd "$SOURCE_DIR"
 
+rm -rf "$TTF_DIR" "$WOFF2_DIR"
+mkdir -p "$TTF_DIR" "$WOFF2_DIR"
 
-echo "Generating Static fonts"
-mkdir -p ../fonts
-mkdir -p ../fonts/ttf
-mkdir -p ../fonts/variable
-fontmake -m Cinzel.designspace -i -o ttf --output-dir ../fonts/ttf/
+echo "Building $FONT_BASENAME.ttf"
+fontmake -u "$UFO" -o ttf --output-dir "$TTF_DIR"
 
-echo "Generating VFs"
-fontmake -m Cinzel.designspace -o variable --output-path ../fonts/variable/Cinzel[wght].ttf
+if [ ! -f "$TTF_PATH" ]; then
+  echo "Expected $TTF_PATH but fontmake did not create it" >&2
+  exit 1
+fi
 
-rm -rf master_ufo/ instance_ufo/ instance_ufos/
+echo "Building $FONT_BASENAME.woff2"
+python3 - "$TTF_PATH" "$WOFF2_PATH" <<'PY'
+import sys
+from fontTools.ttLib import TTFont
 
-echo "Generate CinzelDecorative VFs"
-python3 -m opentype_feature_freezer.cli -f ss01,onum ../fonts/variable/Cinzel\[wght\].ttf ../fonts/variable/CinzelDecorative\[wght\].ttf.temp
-python3 -m opentype_feature_freezer.cli -S -U Decorative -f ss02 ../fonts/variable/CinzelDecorative\[wght\].ttf.temp ../fonts/variable/CinzelDecorative\[wght\].ttf
-rm ../fonts/variable/CinzelDecorative\[wght\].ttf.temp
-pyftsubset  --glyph-names --notdef-glyph --notdef-outline --recommended-glyphs --layout-features-="ss01,ss02,onum" --layout-features+="calt,locl,dlig" --name-IDs="*" --unicodes="*" --output-file=../fonts/variable/CinzelDecorative\[wght\].subset.ttf ../fonts/variable/CinzelDecorative\[wght\].ttf
-mv ../fonts/variable/CinzelDecorative\[wght\].subset.ttf ../fonts/variable/CinzelDecorative\[wght\].ttf
+source, target = sys.argv[1], sys.argv[2]
+font = TTFont(source)
+font.flavor = "woff2"
+font.save(target)
+PY
 
-echo "Generate CinzelDecorative static fonts"
-ttfs=$(ls ../fonts/ttf/*.ttf | grep -v "Decorative-")
-for ttf in $ttfs
-do
-	dttf=$(echo $ttf | sed 's/-/Decorative-/');
-	subsetdttf=$(basename -s .ttf $dttf).ttf
-	python3 -m opentype_feature_freezer.cli -f ss01,onum $ttf $dttf.temp;
-	python3 -m opentype_feature_freezer.cli -S -U Decorative -f ss02 $dttf.temp $dttf;
-	rm $dttf.temp
-	pyftsubset --glyph-names --notdef-glyph --notdef-outline --recommended-glyphs --layout-features-="ss01,ss02,onum" --layout-features+="calt,locl,dlig" --name-IDs="*" --unicodes="*" --output-file=$subsetdttf $dttf;
-	mv $subsetdttf $dttf;
-done
-
-echo "Post processing"
-ttfs=$(ls ../fonts/ttf/*.ttf)
-for ttf in $ttfs
-do
-	gftools fix-dsig -f $ttf;
-	# python -m ttfautohint $ttf "$ttf.fix";
-	# mv "$ttf.fix" $ttf;
-done
-
-vfs=$(ls ../fonts/variable/*.ttf)
-echo vfs
-echo "Post processing VFs"
-for vf in $vfs
-do
-	gftools fix-dsig -f $vf;
-	# ./ttfautohint-vf --stem-width-mode nnn $vf "$vf.fix";
-	# mv "$vf.fix" $vf;
-done
-
-echo "Fixing VF Meta"
-for vf in $vfs
-do
-	gftools fix-vf-meta $vf;
-done
-
-echo "Dropping MVAR"
-for vf in $vfs
-do
-	mv "$vf.fix" $vf;
-	ttx -f -x "MVAR" $vf; # Drop MVAR. Table has issue in DW
-	rtrip=$(basename -s .ttf $vf)
-	new_file=../fonts/variable/$rtrip.ttx;
-	rm $vf;
-	ttx $new_file
-	rm $new_file
-done
-
-echo "Fixing Hinting"
-for vf in $vfs
-do
-	gftools fix-nonhinting $vf $vf;
-	if [ -f "$vf.fix" ]; then mv "$vf.fix" $vf; fi
-done
-
-for ttf in $ttfs
-do
-	gftools fix-nonhinting $ttf $ttf;
-	if [ -f "$ttf.fix" ]; then mv "$ttf.fix" $ttf; fi
-done
-
-rm -f ../fonts/variable/*.ttx
-rm -f ../fonts/ttf/*.ttx
-rm -f ../fonts/variable/*gasp.ttf
-rm -f ../fonts/ttf/*gasp.ttf
+rm -rf master_ufo instance_ufo instance_ufos
 
 echo "Done"
