@@ -3,7 +3,7 @@ Cinzel Hellenic
 
 Cinzel Hellenic is a Regular-only display typeface derived from [Cinzel](https://github.com/NDISCOVER/Cinzel). It keeps the classical Cinzel base and adds a restrained Hellenic tint for Latin logos, marks, and display use.
 
-The Hellenic treatment is intentionally narrow: the current design focuses on the uppercase `A`, `E`, `M`, and `O`, preserving Latin readability while nudging the word shape toward Greek inscriptional forms. The `A` drops its crossbar, the `E` extends its middle arm to the full arm length, the `M` raises the vertex of its middle diagonals, and the `O` is slightly reduced and centered like an inscriptional omicron.
+The Hellenic treatment is intentionally narrow: the current design focuses on the uppercase `A`, `E`, `M`, and `O`, preserving Latin readability while nudging the word shape toward Greek inscriptional forms. The `A` drops its crossbar, the `E` extends its middle arm to the full arm length, the `M` raises the vertex of its middle diagonals, and the `O` is slightly reduced and centered like an inscriptional omicron. The stylistic alternates (`salt`/`ss01`/`ss02`) and the accented forms follow the same treatment; drawn ligature edge cases (`Æ`, `Œ`) and `Q` keep their original Cinzel forms.
 
 Preview
 -------
@@ -52,6 +52,17 @@ The build emits:
 - `fonts/woff2/CinzelHellenic-Regular.woff2`
 
 No Bold, Black, Decorative, or variable fonts are built.
+
+Quality
+-------
+
+CI builds the font on every push, verifies that the committed binaries in
+`fonts/` match the UFO sources, runs the fontbakery universal profile
+(configured in `sources/fontbakery.yaml`), and renders the preview images as a
+build artifact.
+
+The UFO sources are kept normalized with `ufonormalizer`; run
+`ufonormalizer -m sources/CinzelHellenic-Regular.ufo` after editing glyphs.
 
 Regenerating Previews
 ---------------------

@@ -1,0 +1,23 @@
+# fontbakery configuration for the universal profile.
+#
+# The checks below are excluded because they flag conditions inherited from
+# the upstream Cinzel design that we deliberately keep:
+#
+# - alt_caron: dcaron is composed with the combining caron; Lcaron/lcaron/
+#   tcaron are decomposed. Lowercase forms are out of scope for this
+#   uppercase-focused display cut.
+# - contour_count: the Hellenic A/E/M/O intentionally change contour counts
+#   relative to common expectations for those codepoints.
+# - math_signs_width: math sign widths are inherited from Cinzel.
+# - overlapping_path_segments: Cinzel outlines are constructed from
+#   overlapping parts (serifs, flares) by design.
+# - soft_hyphen: the softhyphen glyph is part of the inherited glyph set.
+# - unreachable_glyphs: some inherited alternates are kept in the sources
+#   even though no feature references them.
+exclude_checks:
+  - alt_caron
+  - contour_count
+  - math_signs_width
+  - overlapping_path_segments
+  - soft_hyphen
+  - unreachable_glyphs

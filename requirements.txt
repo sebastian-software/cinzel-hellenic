@@ -2,3 +2,5 @@ fontmake==3.12.1
 fonttools==4.63.0
 Brotli==1.2.0
 Pillow==12.2.0
+ufonormalizer==0.6.3
+fontbakery==1.1.0

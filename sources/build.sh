@@ -16,7 +16,7 @@ rm -rf "$TTF_DIR" "$WOFF2_DIR"
 mkdir -p "$TTF_DIR" "$WOFF2_DIR"
 
 echo "Building $FONT_BASENAME.ttf"
-fontmake -u "$UFO" -o ttf --output-dir "$TTF_DIR"
+fontmake -u "$UFO" -o ttf --flatten-components --output-dir "$TTF_DIR"
 
 if [ ! -f "$TTF_PATH" ]; then
   echo "Expected $TTF_PATH but fontmake did not create it" >&2
@@ -33,6 +33,16 @@ source, target = sys.argv[1], sys.argv[2]
 font = TTFont(source, recalcTimestamp=False)
 font.recalcTimestamp = False
 font["head"].modified = font["head"].created
+
+# Smart dropout control for unhinted rendering (see fontbakery smart_dropout)
+from fontTools.ttLib import newTable
+from fontTools.ttLib.tables import ttProgram
+
+prep = newTable("prep")
+prep.program = ttProgram.Program()
+prep.program.fromAssembly(["PUSHW[]", "511", "SCANCTRL[]", "PUSHB[]", "4", "SCANTYPE[]"])
+font["prep"] = prep
+
 font.save(source)
 font.flavor = "woff2"
 font.save(target)
